@@ -1,0 +1,196 @@
+;*************************************************************************
+;***                                                                   ***
+;***      Bosch Rexroth Electric               			       ***
+;***      Drives and Controls GmbH                                     ***
+;***      Produktbereich Schraub- und Einpresstechnik                  ***
+;***      Abteilung BRC/PAT2                                           ***
+;***                                                                   ***
+;***      Postfach 1161                                                ***
+;***      D-71540 Murrhardt                                            ***
+;***      Tel:    ++49 - (0)7192 - 22-208                              ***
+;***      Fax:    ++49 - (0)7192 - 22-181                              ***
+;***      E-Mail: schraubtechnik@de.bosch.com                          ***
+;***                                                                   ***
+;*************************************************************************
+;***                                                                   ***
+;***      Geräte Stammdaten Datei: rx0B1E.GSD    (c) 2007              ***
+;***      Version 1.000 vom 20.06.2007                                 ***
+;***      Modul Kennung von BS350 automatisch erstellt...              ***
+;***                                                                   ***
+;*************************************************************************
+;***                                                                   ***
+;***      Busteilnehmer  IMpdp                                         *** 
+;***      Schnittstellenmodul fuer Schraubsteuerungen KE350,           ***
+;***      SE351, SE352, CS351,                                         ***  
+;***                                                                   ***
+;***      TTNR. der Baugruppe: 0 608 830 266                           ***
+;***                                                                   ***
+;*************************************************************************
+;
+;         WICHTIGER HINWEIS:
+;         ==================	 	
+;         Eine unsachgemaesse Veraenderung der Parameter kann zu undef-
+;         niertem Systemverhalten des PDP-Busses fuehren und geschieht
+;         in eigener Verantwortung !
+;               
+;*************************************************************************
+;
+
+#Profibus_DP
+
+;
+;*************************************************************************
+; Allgemeine Daten/ Unit-Definition-List
+;*************************************************************************
+
+GSD_Revision        = 5
+
+; Device identification
+Vendor_Name         = "Rexroth"
+Model_Name          = "IMpdp fuer KE/SE/CS"
+Revision            = "2.08"
+Ident_Number        = 0x0B1E
+Protocol_Ident      = 0                ; DP protocol
+Station_Type        = 0                ; Slave device
+FMS_supp            = 0                ; FMS not supported
+Slave_Family        = 0@Rexroth        ; General device
+Hardware_Release    = "Version 2.03"
+Software_Release    = "Version 2.06"
+
+; Supported hardware features
+Redundancy          = 0                ; not supported
+Repeater_Ctrl_Sig   = 2                ; TTL
+24V_Pins            = 0                ; not connected
+Implementation_Type = "NP30"
+
+; Supported DP features
+Freeze_Mode_supp    = 1                ; supported
+Sync_Mode_supp      = 1                ; supported
+Auto_Baud_supp      = 1                ; supported
+Set_Slave_Add_supp  = 1                ; supported
+Fail_Safe           = 1                ; supported
+
+; Supported baudrates
+9.6_supp            = 1
+19.2_supp           = 1
+45.45_supp          = 1
+93.75_supp          = 1
+187.5_supp          = 1
+500_supp            = 1
+1.5M_supp           = 1
+3M_supp             = 1
+6M_supp             = 1
+12M_supp            = 1
+
+; Maximum responder time for supported baudrates
+MaxTsdr_9.6         = 15
+MaxTsdr_19.2        = 15
+MaxTsdr_45.45       = 15
+MaxTsdr_93.75       = 15
+MaxTsdr_187.5       = 15
+MaxTsdr_500         = 15
+MaxTsdr_1.5M        = 25
+MaxTsdr_3M          = 50
+MaxTsdr_6M          = 100
+MaxTsdr_12M         = 200
+
+; Maximum polling frequency
+Min_Slave_Intervall = 1                ; 100 us
+
+; I/O related keywords
+Modular_Station     = 1                ; modular
+Max_Module          = 9
+Max_Input_Len       = 200
+Max_Output_Len      = 200
+Max_Data_Len        = 400
+Modul_Offset        = 0
+
+; Parameterization related keywords
+Max_User_Prm_Data_Len      = 3
+Ext_User_Prm_Data_Const(0) = 0xC0,0x00,0x00
+
+; Diagnostic related keywords
+Max_Diag_Data_Len   = 80
+
+;Status diagnostic messages
+Unit_Diag_Area=16-17
+Value(0)  = "Status not changed"
+Value(1)  = "Status appears"
+Value(2)  = "Status disappears"
+Unit_Diag_Area_End
+
+Unit_Diag_Area=24-31
+Value(0)   = "Minor, recoverable"
+Value(16)  = "Minor, unrecoverable"
+Value(32)  = "Major, recoverable"
+Unit_Diag_Area_End
+
+Unit_Diag_Area=32-39
+Value(16)  = "Generic Error"
+Value(32)  = "Current"
+Value(33)  = "Current, device input side"
+Value(34)  = "Current, inside the device"
+Value(35)  = "Current, device output side"
+Value(48)  = "Voltage"
+Value(49)  = "Mains Voltage"
+Value(50)  = "Voltage inside the device"
+Value(51)  = "Output Voltage"
+Value(64)  = "Temperature"
+Value(65)  = "Ambient Temperature"
+Value(66)  = "Device Temperature"
+Value(80)  = "Device Hardware"
+Value(96)  = "Device Software"
+Value(97)  = "Internal Software"
+Value(98)  = "User Software"
+Value(99)  = "Data Set"
+Value(112) = "Additional Modules"
+Value(128) = "Monitoring"
+Value(129) = "Communication"
+Value(130) = "Protocol Error"
+Value(144) = "External Error"
+Value(240) = "Additional Functions"
+Unit_Diag_Area_End
+
+
+; DPV1 related keywords
+DPV1_Slave              = 1
+Check_Cfg_Mode          = 0
+
+C1_Read_Write_supp      = 1
+C1_Max_Data_Len         = 68
+C1_Response_Timeout     = 100  ;1 sec
+
+C2_Read_Write_supp      = 1
+C2_Max_Data_Len         = 68
+C2_Response_Timeout     = 100  ;1 sec
+C2_Max_Count_Channels   = 1
+
+Max_Initiate_PDU_Length = 52
+
+Ident_Maintenance_supp  = 1
+
+;Alarm settings are not on by default.
+;Here are the parameters that are used for alarms:
+
+;Diagnostic_Alarm_supp  = 1
+;Process_Alarm_supp     = 1
+;Pull_Plug_Alarm_supp   = 1
+;Status_Alarm_supp      = 1
+;Update_Alarm_supp      = 1
+;Manufacturer_Specific_Alarm_supp = 1
+;Extra_Alarm_SAP_supp   = 0
+;Alarm_Sequence_Mode_Count = 32
+;Alarm_Type_Mode_supp   = 1
+
+;Diagnostic_Alarm_required = 0
+;Process_Alarm_required    = 0
+;Pull_Plug_Alarm_required  = 0
+;Status_Alarm_required     = 0
+;Update_Alarm_required     = 0
+;Manufacturer_Specific_Alarm_required = 0
+
+; Definition of modules
+
+Module = "4B I, 4B O, 16B Di, 96B Do" 0xc0,0x03,0x03,0x40,0x3f,0x40,0x1f,0x80,0x0f
+1
+EndModule
